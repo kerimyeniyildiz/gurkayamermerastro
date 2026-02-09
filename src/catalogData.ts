@@ -73,6 +73,7 @@ const toFileUrl = (folder: string, fileName: string) =>
 const toModelName = (fileName: string) =>
   fileName
     .replace(/\.[^.]+$/, '')
+    .replace(/(?:jpe?g|png|webp|avif)$/i, '')
     .replace(/[-_]+/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
