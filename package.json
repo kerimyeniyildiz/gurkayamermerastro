@@ -1,28 +1,29 @@
 {
-  "name": "gurkaya-astro-frontend",
-  "private": true,
-  "version": "1.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "catalog:manifest": "node scripts/generateCatalogManifest.mjs",
-    "catalog:upload:r2": "node scripts/uploadCatalogToR2.mjs"
-  },
-  "dependencies": {
-    "@astrojs/react": "^4.2.0",
-    "@aws-sdk/client-s3": "^3.985.0",
-    "astro": "^5.2.0",
-    "lucide-react": "^0.555.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
-  },
-  "devDependencies": {
-    "@astrojs/tailwind": "^6.0.2",
-    "@tailwindcss/line-clamp": "^0.4.4",
-    "@tailwindcss/typography": "^0.5.19",
-    "tailwindcss": "^3.4.19",
-    "typescript": "^5.7.2"
-  }
+    "name":  "gurkaya-astro-frontend",
+    "private":  true,
+    "version":  "1.0.0",
+    "type":  "module",
+    "scripts":  {
+                    "dev":  "astro dev",
+                    "build":  "astro build",
+                    "preview":  "astro preview",
+                    "catalog:manifest":  "node scripts/generateCatalogManifest.mjs",
+                    "catalog:upload:r2":  "node scripts/uploadCatalogToR2.mjs",
+                    "hero:upload:r2":  "node scripts/uploadHeroVideoToR2.mjs"
+                },
+    "dependencies":  {
+                         "@astrojs/react":  "^4.2.0",
+                         "@aws-sdk/client-s3":  "^3.985.0",
+                         "astro":  "^5.2.0",
+                         "lucide-react":  "^0.555.0",
+                         "react":  "^19.0.0",
+                         "react-dom":  "^19.0.0"
+                     },
+    "devDependencies":  {
+                            "@astrojs/tailwind":  "^6.0.2",
+                            "@tailwindcss/line-clamp":  "^0.4.4",
+                            "@tailwindcss/typography":  "^0.5.19",
+                            "tailwindcss":  "^3.4.19",
+                            "typescript":  "^5.7.2"
+                        }
 }
