@@ -1,4 +1,4 @@
-﻿import React, { useMemo, useState } from 'react';
+﻿import React, { useMemo, useRef, useState } from 'react';
 import { Play, ArrowUpRight, X } from 'lucide-react';
 import { CONTACT_INFO } from '../constants';
 
@@ -35,6 +35,7 @@ const PROJECTS = [
 
 export const Portfolio: React.FC = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const previewVideoRef = useRef<HTMLVideoElement | null>(null);
 
   const videoUrl = useMemo(() => {
     const direct = import.meta.env.PUBLIC_PORTFOLIO_VIDEO_URL as string | undefined;
@@ -43,6 +44,18 @@ export const Portfolio: React.FC = () => {
     const base = (import.meta.env.PUBLIC_R2_PUBLIC_URL as string | undefined) || 'https://cdn.gurkayamermer.com/';
     return `${base.replace(/\/$/, '')}/Hero.mp4`;
   }, []);
+
+  const handlePreviewLoadedData = () => {
+    const video = previewVideoRef.current;
+    if (!video) return;
+
+    try {
+      video.currentTime = 0.12;
+      video.pause();
+    } catch {
+      // Keep the browser-selected first frame if seeking is blocked.
+    }
+  };
 
   return (
     <section id="portfolio" className="py-24 bg-stone-50">
@@ -70,15 +83,29 @@ export const Portfolio: React.FC = () => {
                 idx === 0 ? 'lg:col-span-2 lg:row-span-2 aspect-[4/3] lg:aspect-auto' : 'aspect-square'
               }`}
             >
-              <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+              {idx === 0 ? (
+                <video
+                  ref={previewVideoRef}
+                  src={videoUrl}
+                  muted
+                  playsInline
+                  preload="metadata"
+                  onLoadedData={handlePreviewLoadedData}
+                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                />
+              ) : (
+                <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+              )}
+
               <div className="absolute inset-0 bg-emerald-950/20 group-hover:bg-emerald-950/10 transition-colors" />
 
+              {idx === 0 && (
+                <div className="absolute z-20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/40 pointer-events-none">
+                  <Play size={24} className="fill-white text-white ml-1" />
+                </div>
+              )}
+
               <div className="absolute inset-0 p-6 flex flex-col justify-end bg-gradient-to-t from-emerald-950/80 via-transparent to-transparent opacity-100 md:opacity-0 group-hover:opacity-100 transition-all duration-500">
-                {idx === 0 && (
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/40 mb-auto">
-                    <Play size={24} className="fill-white text-white ml-1" />
-                  </div>
-                )}
                 <span className="text-amber-400 text-xs font-bold uppercase tracking-wider mb-1">{project.location}</span>
                 <h3 className="font-serif text-2xl text-white mb-1">{project.title}</h3>
                 <p className="text-stone-300 text-sm">{project.desc}</p>
