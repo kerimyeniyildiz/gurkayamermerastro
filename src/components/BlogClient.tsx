@@ -53,11 +53,7 @@ export const BlogClient: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const apiUrl = import.meta.env.PUBLIC_PAYLOAD_API_URL;
-    if (!apiUrl) {
-      setLoading(false);
-      return;
-    }
+    const apiUrl = import.meta.env.PUBLIC_PAYLOAD_API_URL || 'https://cms.gurkayamermer.com';
 
     const fetchPosts = async () => {
       try {
