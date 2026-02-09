@@ -1,8 +1,14 @@
----
+﻿---
 import MainLayout from '../layouts/MainLayout.astro';
 import { BlogClient } from '../components/BlogClient';
 ---
 
-<MainLayout title="Blog | Gürkaya Mermer" activePage="blog">
+<MainLayout
+  title="Blog | Gürkaya Mermer"
+  description="Mermer, granit, kuvars ve porselen tezgah seçimleri, bakım önerileri ve uygulama trendleri hakkında blog içerikleri."
+  canonicalPath="/blog"
+  activePage="blog"
+  ogType="article"
+>
   <BlogClient client:load />
 </MainLayout>

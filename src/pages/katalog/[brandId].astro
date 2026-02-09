@@ -1,4 +1,4 @@
----
+﻿---
 import MainLayout from '../../layouts/MainLayout.astro';
 import { CATALOG_DATA } from '../../catalogData';
 import { CatalogDetailPage } from '../../components/CatalogDetailPage';
@@ -10,11 +10,14 @@ export function getStaticPaths() {
 }
 
 const { brandId } = Astro.params;
-const pageTitle = CATALOG_DATA[brandId || '']?.title
-  ? `${CATALOG_DATA[brandId || ''].title} | Gürkaya Mermer`
-  : 'Katalog | Gürkaya Mermer';
+const catalog = CATALOG_DATA[brandId || ''];
+const pageTitle = catalog?.title ? `${catalog.title} | Gürkaya Mermer` : 'Katalog | Gürkaya Mermer';
+const pageDescription = catalog?.title
+  ? `${catalog.title} koleksiyonundaki tezgah modellerini inceleyin. Gürkaya Mermer ile proje ve fiyat teklifi alın.`
+  : 'Gürkaya Mermer katalog sayfasında granit, kuvars ve porselen tezgah modellerini inceleyin.';
+const canonicalPath = brandId ? `/katalog/${brandId}` : '/katalog';
 ---
 
-<MainLayout title={pageTitle} activePage="catalog">
+<MainLayout title={pageTitle} description={pageDescription} canonicalPath={canonicalPath} activePage="catalog">
   <CatalogDetailPage brandId={brandId || ''} />
 </MainLayout>

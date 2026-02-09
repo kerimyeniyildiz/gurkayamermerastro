@@ -7,9 +7,51 @@ import '../styles/global.css';
 interface Props {
   title: string;
   activePage: ActivePage;
+  description?: string;
+  canonicalPath?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  noindex?: boolean;
+  structuredData?: Record<string, unknown> | Array<Record<string, unknown>>;
 }
 
-const { title, activePage } = Astro.props;
+const {
+  title,
+  activePage,
+  description = 'Gürkaya Mermer Granit; mutfak, banyo ve yaşam alanları için granit, kuvars ve porselen tezgah çözümleri sunar.',
+  canonicalPath,
+  ogImage = 'https://cdn.gurkayamermer.com/site-images/hero/home-hero.jpg',
+  ogType = 'website',
+  noindex = false,
+  structuredData,
+} = Astro.props;
+
+const siteUrl = ((import.meta.env.PUBLIC_SITE_URL as string | undefined) || 'https://gurkayamermer.com').replace(/\/$/, '');
+const currentPath = canonicalPath || Astro.url.pathname || '/';
+const normalizedPath = currentPath.startsWith('/') ? currentPath : `/${currentPath}`;
+const canonicalUrl = `${siteUrl}${normalizedPath === '/' ? '' : normalizedPath}`;
+
+const defaultStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Gürkaya Mermer Granit',
+  url: siteUrl,
+  image: ogImage,
+  telephone: '+905358740960',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Malkoçoğlu Mah. Eski Edirne Asfaltı 817-819/C',
+    addressLocality: 'Sultangazi',
+    addressRegion: 'İstanbul',
+    addressCountry: 'TR',
+  },
+  areaServed: 'İstanbul',
+  sameAs: [
+    'https://www.instagram.com/',
+  ],
+};
+
+const schemas = structuredData ? (Array.isArray(structuredData) ? structuredData : [structuredData]) : [defaultStructuredData];
 ---
 
 <html lang="tr" class="scroll-smooth">
@@ -17,10 +59,32 @@ const { title, activePage } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hrefLang="tr-TR" href={canonicalUrl} />
+    <link rel="alternate" hrefLang="x-default" href={siteUrl} />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:locale" content="tr_TR" />
+    <meta property="og:site_name" content="Gürkaya Mermer" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImage} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="theme-color" content="#064e3b" />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+    {schemas.map((schema) => <script type="application/ld+json" set:html={JSON.stringify(schema)} />)}
   </head>
   <body class="bg-stone-50 text-stone-900 antialiased selection:bg-emerald-200 selection:text-emerald-900 pb-[80px] md:pb-0">
     <div class="bg-emerald-950 text-white/90 py-3 px-4 text-center text-xs tracking-widest uppercase font-medium">

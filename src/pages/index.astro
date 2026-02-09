@@ -6,9 +6,23 @@ import { ProductShowcase } from '../components/ProductShowcase';
 import { Portfolio } from '../components/Portfolio';
 import { Testimonials } from '../components/Testimonials';
 import { ContactSection } from '../components/ContactSection';
+
+const homeSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Gürkaya Mermer',
+  url: 'https://gurkayamermer.com',
+  inLanguage: 'tr-TR',
+};
 ---
 
-<MainLayout title="Gürkaya Mermer | Mutfak & Banyo Tezgahları" activePage="home">
+<MainLayout
+  title="Gürkaya Mermer | Mutfak & Banyo Tezgahları"
+  description="Gürkaya Mermer Granit İstanbul'da granit, Belenco ve Çimstone tezgah çözümleri sunar. Ücretsiz keşif ve hızlı montaj hizmeti alın."
+  canonicalPath="/"
+  activePage="home"
+  structuredData={homeSchema}
+>
   <Hero />
   <Features />
   <ProductShowcase client:load />
