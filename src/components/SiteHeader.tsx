@@ -45,7 +45,7 @@ export const SiteHeader: React.FC<SiteHeaderProps> = ({ activePage }) => {
   }, [isMenuOpen]);
 
   return (
-    <header className="bg-white/95 backdrop-blur-lg border-b border-stone-100 sticky top-0 z-[70] shadow-sm">
+    <header className="bg-white md:bg-white/95 md:backdrop-blur-lg border-b border-stone-100 sticky top-0 z-[70] shadow-sm">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center relative">
         <a href="/" className="flex flex-col group z-50">
           <span className="font-serif text-2xl md:text-3xl font-bold text-emerald-950 tracking-tight group-hover:opacity-80 transition-opacity">GÜRKAYA</span>
@@ -113,7 +113,7 @@ export const SiteHeader: React.FC<SiteHeaderProps> = ({ activePage }) => {
       </div>
 
       {isMenuOpen && (
-        <div className="fixed inset-0 z-[90] bg-white md:hidden animate-fade-in">
+        <div className="fixed inset-0 z-[999] bg-white md:hidden animate-fade-in">
           <div className="h-full flex flex-col">
             <div className="border-b border-stone-100 px-6 py-4 flex items-center justify-between">
               <a href="/" className="flex flex-col group">
