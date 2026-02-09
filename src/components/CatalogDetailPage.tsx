@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { CATALOG_DATA } from '../catalogData';
 import { ArrowLeft, MessageCircle } from 'lucide-react';
 import { CONTACT_INFO } from '../constants';

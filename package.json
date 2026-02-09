@@ -6,10 +6,13 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "catalog:manifest": "node scripts/generateCatalogManifest.mjs",
+    "catalog:upload:r2": "node scripts/uploadCatalogToR2.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^4.2.0",
+    "@aws-sdk/client-s3": "^3.985.0",
     "astro": "^5.2.0",
     "lucide-react": "^0.555.0",
     "react": "^19.0.0",

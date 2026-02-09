@@ -1,6 +1,7 @@
-import type { CatalogItem, CatalogMenu } from './types';
+﻿import type { Product, CatalogItem, CatalogMenu } from './types';
+import { CATALOG_MANIFEST } from './data/catalogManifest';
 
-const toBrandSlug = (value: string) =>
+export const toBrandSlug = (value: string) =>
   value
     .toLocaleLowerCase('tr-TR')
     .replace(/ı/g, 'i')
@@ -15,80 +16,112 @@ const toBrandSlug = (value: string) =>
     .replace(/\s+/g, '-')
     .replace(/\./g, '');
 
+const BRAND_LABELS: Record<string, string> = {
+  BELENCO: 'Belenco',
+  'BELENCO-SETA': 'Belenco Seta',
+  'SILESTONE-POLISHED': 'Silestone-Polished',
+  'SILESTONE-SV': 'Silestone S.V.',
+  COANTE: 'Coante',
+  CIMSTONE: 'Çimstone',
+  GRANIT: 'Granit',
+  LAMINAM: 'Laminam',
+  NEOLITH: 'Neolith',
+  DEKTON: 'Dekton',
+  SAPIENSTONE: 'Sapienstone',
+  INFINITY: 'Infinity',
+  LEVEL: 'Level',
+  MATERIA: 'Materia',
+  MYTOP: 'Mytop',
+  'T-ONE': 'T-One',
+  FLORIM: 'Florim',
+  FIANDRE: 'Fiandre',
+  LAMAR: 'Lamar',
+  ANATOLIA: 'Anatolia',
+  'NG-STONE': 'Ng Stone',
+  INALCO: 'Inalco',
+  'VERSACE-CERAMICS': 'Versace Ceramics',
+};
+
+const QUARTZ_BRANDS = ['BELENCO', 'BELENCO-SETA', 'SILESTONE-POLISHED', 'SILESTONE-SV', 'COANTE', 'CIMSTONE', 'GRANIT'];
+const PORCELAIN_BRANDS = [
+  'LAMINAM',
+  'NEOLITH',
+  'DEKTON',
+  'SAPIENSTONE',
+  'INFINITY',
+  'LEVEL',
+  'MATERIA',
+  'MYTOP',
+  'T-ONE',
+  'FLORIM',
+  'FIANDRE',
+  'LAMAR',
+  'ANATOLIA',
+  'NG-STONE',
+  'INALCO',
+  'VERSACE-CERAMICS',
+];
+
+const r2PublicUrl = ((import.meta.env.PUBLIC_R2_PUBLIC_URL as string | undefined) || 'https://cdn.gurkayamermer.com/').replace(/\/$/, '');
+const catalogPrefix = ((import.meta.env.PUBLIC_R2_CATALOG_PREFIX as string | undefined) || 'catalog-images').replace(/^\/+|\/+$/g, '');
+
+const toFileUrl = (folder: string, fileName: string) =>
+  `${r2PublicUrl}/${catalogPrefix}/${encodeURIComponent(folder)}/${encodeURIComponent(fileName)}`;
+
+const toModelName = (fileName: string) =>
+  fileName
+    .replace(/\.[^.]+$/, '')
+    .replace(/[-_]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+const buildProducts = (folder: string): Product[] => {
+  const files = [...(CATALOG_MANIFEST[folder as keyof typeof CATALOG_MANIFEST] || [])];
+
+  return files.map((file, index) => ({
+    id: `${toBrandSlug(folder)}-${index}`,
+    name: toModelName(file),
+    brand: BRAND_LABELS[folder] || folder,
+    image: toFileUrl(folder, file),
+    popular: index === 0,
+  }));
+};
+
 export const CATALOG_MENU_STRUCTURE: CatalogMenu[] = [
   {
     title: 'Kuvars',
     key: 'kuvars',
-    items: [
-      'Belenco',
-      'Belenco Seta',
-      'Silestone-Polished',
-      'Silestone S.V.',
-      'Coante',
-      'Çimstone',
-      'Granit'
-    ]
+    items: QUARTZ_BRANDS.map((folder) => BRAND_LABELS[folder]),
   },
   {
     title: 'Porselen',
     key: 'porselen',
-    items: [
-      'Laminam',
-      'Neolith',
-      'Dekton',
-      'Sapienstone',
-      'Infinity',
-      'Level',
-      'Materia',
-      'Mytop',
-      'T-One',
-      'Florim',
-      'Fiandre',
-      'Lamar',
-      'Anatolia',
-      'Ng Stone',
-      'Inalco',
-      'Versace Ceramics'
-    ]
-  }
+    items: PORCELAIN_BRANDS.map((folder) => BRAND_LABELS[folder]),
+  },
 ];
 
-// Helper to generate mock products for any brand
-const generateProducts = (brandName: string, count: number, startImageIndex: number) => {
-  return Array.from({ length: count }).map((_, i) => ({
-    id: `${toBrandSlug(brandName)}-${i}`,
-    name: `${brandName} Model ${i + 1}`,
-    brand: brandName,
-    image: `https://images.unsplash.com/photo-${startImageIndex + i}?q=80&w=600&auto=format&fit=crop`,
-    popular: i === 0
-  }));
-};
+const folderToCategory: Record<string, 'kuvars' | 'porselen'> = {};
+for (const folder of QUARTZ_BRANDS) folderToCategory[folder] = 'kuvars';
+for (const folder of PORCELAIN_BRANDS) folderToCategory[folder] = 'porselen';
 
-// Database imitating the content for each page
 export const CATALOG_DATA: Record<string, CatalogItem> = {};
 
-// Populate Kuvars Data
-CATALOG_MENU_STRUCTURE[0].items.forEach((brand, index) => {
-  const id = toBrandSlug(brand);
-  CATALOG_DATA[id] = {
-    id,
-    title: brand,
-    category: 'kuvars',
-    description: `${brand} kuvars yüzeyler, mutfak ve banyolarınız için üstün dayanıklılık ve estetik sunar. Leke tutmaz, çizilmez ve hijyeniktir.`,
-    coverImage: 'https://images.unsplash.com/photo-1567225557594-88d73e55f2cb?q=80&w=1200&auto=format&fit=crop',
-    products: generateProducts(brand, 6, 1567225557590 + index) // Randomizing images slightly
-  };
-});
+Object.keys(folderToCategory).forEach((folder) => {
+  const category = folderToCategory[folder];
+  const brandTitle = BRAND_LABELS[folder] || folder;
+  const id = toBrandSlug(brandTitle);
+  const products = buildProducts(folder);
+  const coverImage = products[0]?.image || 'https://images.unsplash.com/photo-1567225557594-88d73e55f2cb?q=80&w=1200&auto=format&fit=crop';
 
-// Populate Porselen Data
-CATALOG_MENU_STRUCTURE[1].items.forEach((brand, index) => {
-  const id = toBrandSlug(brand);
   CATALOG_DATA[id] = {
     id,
-    title: brand,
-    category: 'porselen',
-    description: `${brand} porselen serisi, İtalyan estetiğini ve ileri teknolojiyi bir araya getiriyor. Isıya dayanıklı, geniş ebatlı ve mimari projeler için mükemmeldir.`,
-    coverImage: 'https://images.unsplash.com/photo-1615971677499-54678dd53f7d?q=80&w=1200&auto=format&fit=crop',
-    products: generateProducts(brand, 8, 1615971677490 + index)
+    title: brandTitle,
+    category,
+    description:
+      category === 'kuvars'
+        ? `${brandTitle} kuvars koleksiyonu, dayanıklılık ve estetiği bir araya getirir. Leke tutmayan yüzeyiyle mutfak ve banyo için idealdir.`
+        : `${brandTitle} porselen koleksiyonu, yüksek ısı dayanımı ve modern yüzey seçenekleriyle mimari projeler için güçlü bir çözümdür.`,
+    coverImage,
+    products,
   };
 });
