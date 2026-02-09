@@ -107,7 +107,7 @@ export const SiteHeader: React.FC<SiteHeaderProps> = ({ activePage }) => {
           </a>
         </nav>
 
-        <button className="md:hidden text-emerald-950 p-2 z-50" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        <button type="button" aria-label={isMenuOpen ? 'Menüyü kapat' : 'Menüyü aç'} className="md:hidden text-emerald-950 p-2 z-50" onClick={() => setIsMenuOpen(!isMenuOpen)}>
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>

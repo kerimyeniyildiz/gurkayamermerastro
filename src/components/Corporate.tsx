@@ -16,6 +16,9 @@ export const Corporate: React.FC = () => {
               <img 
                 src="https://cdn.gurkayamermer.com/site-images/corporate/corporate-cover.jpg" 
                 alt="Gürkaya Mermer Atölye ve İşçilik" 
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
               />
               {/* Experience Badge */}

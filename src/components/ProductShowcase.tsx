@@ -36,12 +36,14 @@ export const ProductShowcase: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
-          {filteredProducts.map((product) => (
+          {filteredProducts.map((product, idx) => (
             <div key={product.id} className="group">
               <div className="relative aspect-[4/3] overflow-hidden bg-stone-100 rounded-sm mb-6">
                 <img
                   src={product.image}
                   alt={product.name}
+                  loading={idx < 2 ? 'eager' : 'lazy'}
+                  decoding="async"
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
                 {product.popular && (

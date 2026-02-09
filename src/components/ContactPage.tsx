@@ -103,6 +103,8 @@ export const ContactPage: React.FC = () => {
              <img 
                src="https://cdn.gurkayamermer.com/site-images/contact/map-cover.jpg" 
                alt="Harita Konumu" 
+               loading="lazy"
+               decoding="async"
                className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700"
              />
              <div className="absolute inset-0 bg-emerald-950/20 flex items-center justify-center">

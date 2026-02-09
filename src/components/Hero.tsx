@@ -10,6 +10,9 @@ export const Hero: React.FC = () => {
         <img
           src="https://cdn.gurkayamermer.com/site-images/hero/home-hero.jpg"
           alt="Lüks Mutfak Tezgahı"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
           className="w-full h-full object-cover opacity-90"
         />
         {/* Soft overlay gradient */}

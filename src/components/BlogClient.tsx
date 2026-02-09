@@ -81,7 +81,7 @@ export const BlogClient: React.FC = () => {
       <div className="bg-white min-h-screen animate-fade-in pb-20">
         <div className="relative h-[40vh] md:h-[50vh] w-full">
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent z-10"></div>
-          <img src={selectedPost.image} alt={selectedPost.title} className="w-full h-full object-cover" />
+          <img src={selectedPost.image} alt={selectedPost.title} loading="eager" fetchPriority="high" decoding="async" className="w-full h-full object-cover" />
           <div className="absolute top-6 left-6 z-20">
             <button onClick={handleBack} className="bg-white/90 hover:bg-white text-emerald-950 px-4 py-2 rounded-full flex items-center gap-2 text-sm font-medium transition-colors shadow-lg">
               <ArrowLeft size={16} />
@@ -148,7 +148,7 @@ export const BlogClient: React.FC = () => {
                 <div className="flex flex-col gap-6">
                   {otherPosts.map((post) => (
                     <div key={post.id} onClick={() => handlePostClick(post)} className="group cursor-pointer flex gap-4 items-start">
-                      <img src={post.image} alt={post.title} className="w-20 h-20 object-cover rounded-sm group-hover:opacity-80 transition-opacity" />
+                      <img src={post.image} alt={post.title} loading="lazy" decoding="async" className="w-20 h-20 object-cover rounded-sm group-hover:opacity-80 transition-opacity" />
                       <div>
                         <h4 className="font-serif text-sm font-bold text-emerald-950 group-hover:text-amber-700 transition-colors line-clamp-2 mb-1">{post.title}</h4>
                         <span className="text-xs text-stone-400">{post.date}</span>
@@ -187,7 +187,7 @@ export const BlogClient: React.FC = () => {
               onClick={() => handlePostClick(post)}
             >
               <div className="relative aspect-[16/10] overflow-hidden">
-                <img src={post.image} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                <img src={post.image} alt={post.title} loading="lazy" decoding="async" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                 <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 text-xs font-bold uppercase tracking-wider text-emerald-950">{post.category}</div>
               </div>
 

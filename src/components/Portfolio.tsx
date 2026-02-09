@@ -94,7 +94,13 @@ export const Portfolio: React.FC = () => {
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                 />
               ) : (
-                <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                />
               )}
 
               <div className="absolute inset-0 bg-emerald-950/20 group-hover:bg-emerald-950/10 transition-colors" />
