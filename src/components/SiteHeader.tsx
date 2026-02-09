@@ -113,8 +113,21 @@ export const SiteHeader: React.FC<SiteHeaderProps> = ({ activePage }) => {
       </div>
 
       {isMenuOpen && (
-        <div className="fixed inset-0 z-[60] bg-white md:hidden animate-fade-in">
-          <nav className="h-full overflow-y-auto pt-[96px] px-6 pb-28 flex flex-col gap-4 text-lg font-serif text-emerald-950">
+        <div className="fixed inset-0 z-[90] bg-white md:hidden animate-fade-in">
+          <div className="h-full flex flex-col">
+            <div className="border-b border-stone-100 px-6 py-4 flex items-center justify-between">
+              <a href="/" className="flex flex-col group">
+                <span className="font-serif text-2xl font-bold text-emerald-950 tracking-tight">GÜRKAYA</span>
+                <span className="text-[10px] font-medium text-amber-700 tracking-normal uppercase -mt-1 ml-1 whitespace-nowrap">
+                  İSTANBUL'UN EN UYGUN MERMER FİRMASI
+                </span>
+              </a>
+              <button type="button" aria-label="Menüyü kapat" className="text-emerald-950 p-2" onClick={() => setIsMenuOpen(false)}>
+                <X size={24} />
+              </button>
+            </div>
+
+            <nav className="flex-1 overflow-y-auto px-6 pt-6 pb-28 flex flex-col gap-4 text-lg font-serif text-emerald-950">
             <a href="/" className="border-b border-stone-100 pb-3">
               Ana Sayfa
             </a>
@@ -165,7 +178,8 @@ export const SiteHeader: React.FC<SiteHeaderProps> = ({ activePage }) => {
               <Phone size={20} />
               Hemen Ara
             </a>
-          </nav>
+            </nav>
+          </div>
         </div>
       )}
     </header>
