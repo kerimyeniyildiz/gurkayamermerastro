@@ -29,7 +29,8 @@ const {
 const siteUrl = ((import.meta.env.PUBLIC_SITE_URL as string | undefined) || 'https://gurkayamermer.com').replace(/\/$/, '');
 const currentPath = canonicalPath || Astro.url.pathname || '/';
 const normalizedPath = currentPath.startsWith('/') ? currentPath : `/${currentPath}`;
-const canonicalUrl = `${siteUrl}${normalizedPath === '/' ? '' : normalizedPath}`;
+const canonicalPathWithSlash = normalizedPath === '/' ? '/' : normalizedPath.endsWith('/') ? normalizedPath : `${normalizedPath}/`;
+const canonicalUrl = `${siteUrl}${canonicalPathWithSlash}`;
 
 const defaultStructuredData = {
   '@context': 'https://schema.org',

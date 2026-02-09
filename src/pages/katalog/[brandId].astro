@@ -11,7 +11,9 @@ export function getStaticPaths() {
 
 const { brandId } = Astro.params;
 const catalog = CATALOG_DATA[brandId || ''];
-const pageTitle = catalog?.title ? `${catalog.title} | Gürkaya Mermer` : 'Katalog | Gürkaya Mermer';
+const pageTitle = catalog?.title
+  ? `${catalog.title} Tezgah Modelleri | Gürkaya Mermer Katalog`
+  : 'Tezgah Kataloğu | Gürkaya Mermer';
 const pageDescription = catalog?.title
   ? `${catalog.title} koleksiyonundaki tezgah modellerini inceleyin. Gürkaya Mermer ile proje ve fiyat teklifi alın.`
   : 'Gürkaya Mermer katalog sayfasında granit, kuvars ve porselen tezgah modellerini inceleyin.';
