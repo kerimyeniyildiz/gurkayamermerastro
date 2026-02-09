@@ -70,7 +70,7 @@ export const SiteHeader: React.FC<SiteHeaderProps> = ({ activePage }) => {
                     <ChevronRight size={14} className="text-stone-400" />
                   </button>
 
-                  <div className="hidden group-hover/sub:block absolute left-full top-0 w-64 bg-white border border-stone-100 shadow-xl rounded-sm py-2 ml-0.5 max-h-[500px] overflow-y-auto no-scrollbar">
+                  <div className="hidden group-hover/sub:block absolute left-full top-0 w-64 bg-white border border-stone-100 shadow-xl rounded-sm py-2 ml-0.5 max-h-[70vh] overflow-y-auto">
                     {category.items.map((brand) => (
                       <a
                         key={brand}
