@@ -11,8 +11,8 @@ export function getStaticPaths() {
 
 const { brandId } = Astro.params;
 const pageTitle = CATALOG_DATA[brandId || '']?.title
-  ? `${CATALOG_DATA[brandId || ''].title} | G�rkaya Mermer`
-  : 'Katalog | G�rkaya Mermer';
+  ? `${CATALOG_DATA[brandId || ''].title} | Gürkaya Mermer`
+  : 'Katalog | Gürkaya Mermer';
 ---
 
 <MainLayout title={pageTitle} activePage="catalog">

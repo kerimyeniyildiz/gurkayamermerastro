@@ -1,7 +1,6 @@
-import React, { useEffect, useMemo, useState } from 'react';
+﻿import React, { useEffect, useMemo, useState } from 'react';
 import { Calendar, ArrowRight, ArrowLeft, Clock, Share2 } from 'lucide-react';
 import { CONTACT_INFO } from '../constants';
-import { BLOG_POSTS } from '../blogData';
 import type { BlogPost } from '../types';
 
 type PayloadPost = {
@@ -37,7 +36,7 @@ const normalizePayloadPost = (post: PayloadPost): BlogPost => {
 };
 
 export const BlogClient: React.FC = () => {
-  const [posts, setPosts] = useState<BlogPost[]>(BLOG_POSTS);
+  const [posts, setPosts] = useState<BlogPost[]>([]);
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -51,13 +50,10 @@ export const BlogClient: React.FC = () => {
     const fetchPosts = async () => {
       try {
         const response = await fetch(`${apiUrl}/api/posts?limit=100&sort=-publishedAt&where[status][equals]=published`);
-        if (!response.ok) throw new Error('Blog verisi al1namad1');
+        if (!response.ok) throw new Error('Blog verisi alınamadı');
         const json = await response.json();
         const docs = (json?.docs || []) as PayloadPost[];
-
-        if (docs.length > 0) {
-          setPosts(docs.map(normalizePayloadPost));
-        }
+        setPosts(docs.map(normalizePayloadPost));
       } catch (error) {
         console.error(error);
       } finally {
@@ -89,7 +85,7 @@ export const BlogClient: React.FC = () => {
           <div className="absolute top-6 left-6 z-20">
             <button onClick={handleBack} className="bg-white/90 hover:bg-white text-emerald-950 px-4 py-2 rounded-full flex items-center gap-2 text-sm font-medium transition-colors shadow-lg">
               <ArrowLeft size={16} />
-              Blog'a D�n
+              Blog'a Dön
             </button>
           </div>
           <div className="absolute bottom-0 left-0 w-full p-6 md:p-12 z-20 text-white">
@@ -103,7 +99,7 @@ export const BlogClient: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock size={18} />
-                  3 dk okuma s�resi
+                  3 dk okuma süresi
                 </div>
               </div>
             </div>
@@ -133,22 +129,22 @@ export const BlogClient: React.FC = () => {
               <div className="mt-12 pt-8 border-t border-stone-200 flex flex-col md:flex-row justify-between items-center gap-6">
                 <div className="flex items-center gap-2 text-stone-500">
                   <Share2 size={20} />
-                  <span className="text-sm">Bu yaz1y1 payla_1n</span>
+                  <span className="text-sm">Bu yazıyı paylaşın</span>
                 </div>
                 <a
-                  href={`https://wa.me/${CONTACT_INFO.whatsapp}?text=Merhaba, "${selectedPost.title}" yaz1n1z1 okudum, konuyla ilgili bilgi almak istiyorum.`}
+                  href={`https://wa.me/${CONTACT_INFO.whatsapp}?text=Merhaba, "${selectedPost.title}" yazınızı okudum, konuyla ilgili bilgi almak istiyorum.`}
                   target="_blank"
                   rel="noreferrer"
                   className="bg-emerald-950 text-white px-8 py-3 rounded-sm font-medium hover:bg-emerald-900 transition-colors w-full md:w-auto text-center"
                 >
-                  Uzman1m1za Dan1_1n
+                  Uzmanımıza Danışın
                 </a>
               </div>
             </div>
 
             <div className="lg:w-1/3">
               <div className="bg-stone-50 p-6 rounded-sm border border-stone-100 sticky top-24">
-                <h3 className="font-serif text-xl text-emerald-950 mb-6 pb-2 border-b border-stone-200">Dier Yaz1lar</h3>
+                <h3 className="font-serif text-xl text-emerald-950 mb-6 pb-2 border-b border-stone-200">Diğer Yazılar</h3>
                 <div className="flex flex-col gap-6">
                   {otherPosts.map((post) => (
                     <div key={post.id} onClick={() => handlePostClick(post)} className="group cursor-pointer flex gap-4 items-start">
@@ -173,14 +169,15 @@ export const BlogClient: React.FC = () => {
       <div className="bg-emerald-950 text-white py-20 relative overflow-hidden">
         <div className="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]" />
         <div className="container mx-auto px-6 relative z-10 text-center">
-          <span className="text-amber-500 font-bold tracking-[0.2em] uppercase text-xs mb-3 block">G�rkaya Blog</span>
-          <h1 className="font-serif text-5xl md:text-6xl mb-4">Ta_1n D�nyas1</h1>
-          <p className="text-emerald-100/60 font-light max-w-lg mx-auto text-lg">Mermer bak1m1, dekorasyon trendleri ve teknik bilgiler.</p>
+          <span className="text-amber-500 font-bold tracking-[0.2em] uppercase text-xs mb-3 block">Gürkaya Blog</span>
+          <h1 className="font-serif text-5xl md:text-6xl mb-4">Taşın Dünyası</h1>
+          <p className="text-emerald-100/60 font-light max-w-lg mx-auto text-lg">Mermer bakımı, dekorasyon trendleri ve teknik bilgiler.</p>
         </div>
       </div>
 
       <div className="container mx-auto px-6 py-16 -mt-10 relative z-20">
-        {loading && <div className="text-center text-stone-500 mb-8">Blog yaz1lar1 y�kleniyor...</div>}
+        {loading && <div className="text-center text-stone-500 mb-8">Blog yazıları yükleniyor...</div>}
+        {!loading && posts.length === 0 && <div className="text-center text-stone-500 mb-8">Henüz blog yazısı yok.</div>}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {posts.map((post) => (
@@ -205,7 +202,7 @@ export const BlogClient: React.FC = () => {
                 <p className="text-stone-500 text-sm leading-relaxed line-clamp-3 mb-6 flex-1">{post.excerpt}</p>
 
                 <div className="flex items-center text-emerald-900 font-bold text-sm gap-2 group-hover:gap-3 transition-all">
-                  Devam1n1 Oku <ArrowRight size={16} />
+                  Devamını Oku <ArrowRight size={16} />
                 </div>
               </div>
             </div>

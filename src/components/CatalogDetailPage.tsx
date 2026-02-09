@@ -13,8 +13,8 @@ export const CatalogDetailPage: React.FC<CatalogDetailPageProps> = ({ brandId })
   if (!data) {
     return (
       <div className="min-h-[50vh] flex flex-col items-center justify-center">
-        <h2 className="text-2xl font-serif text-emerald-950 mb-4">Katalog Bulunamad1</h2>
-        <a href="/" className="text-amber-600 hover:underline">Geri D�n</a>
+        <h2 className="text-2xl font-serif text-emerald-950 mb-4">Katalog Bulunamadı</h2>
+        <a href="/" className="text-amber-600 hover:underline">Geri Dön</a>
       </div>
     );
   }
@@ -36,7 +36,7 @@ export const CatalogDetailPage: React.FC<CatalogDetailPageProps> = ({ brandId })
       <div className="container mx-auto px-6 py-12">
         <a href="/" className="inline-flex items-center gap-2 text-stone-500 hover:text-emerald-900 transition-colors mb-8 group">
           <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-          <span>Koleksiyonlara D�n</span>
+          <span>Koleksiyonlara Dön</span>
         </a>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
@@ -46,7 +46,7 @@ export const CatalogDetailPage: React.FC<CatalogDetailPageProps> = ({ brandId })
                 <img src={product.image} alt={product.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                   <a
-                    href={`https://wa.me/${CONTACT_INFO.whatsapp}?text=Merhaba, ${product.brand} - ${product.name} modeli i�in fiyat alabilir miyim?`}
+                    href={`https://wa.me/${CONTACT_INFO.whatsapp}?text=Merhaba, ${product.brand} - ${product.name} modeli için fiyat alabilir miyim?`}
                     target="_blank"
                     rel="noreferrer"
                     className="bg-white text-emerald-950 px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2 hover:bg-amber-500 hover:text-white transition-colors"
@@ -65,12 +65,12 @@ export const CatalogDetailPage: React.FC<CatalogDetailPageProps> = ({ brandId })
         </div>
 
         <div className="mt-16 p-8 bg-emerald-950 rounded-2xl text-center text-white">
-          <h3 className="font-serif text-2xl mb-4">Arad11n1z rengi bulamad1n1z m1?</h3>
+          <h3 className="font-serif text-2xl mb-4">Aradığınız rengi bulamadınız mı?</h3>
           <p className="text-emerald-100/70 mb-6 max-w-lg mx-auto">
-            Stoklar1m1z s�rekli g�ncellenmektedir. T�m renk kartelas1 ve �zel sipari_ler i�in bizimle ileti_ime ge�in.
+            Stoklarımız sürekli güncellenmektedir. Tüm renk kartelası ve özel siparişler için bizimle iletişime geçin.
           </p>
           <a href={`tel:${CONTACT_INFO.phone}`} className="inline-block bg-amber-600 text-white px-8 py-3 rounded-md font-bold hover:bg-amber-700 transition-colors">
-            M�_teri Temsilcisini Ara
+            Müşteri Temsilcisini Ara
           </a>
         </div>
       </div>

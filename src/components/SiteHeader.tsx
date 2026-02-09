@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Phone, Menu, X, ChevronRight, ChevronDown } from 'lucide-react';
 import { CONTACT_INFO } from '../constants';
 import { CATALOG_MENU_STRUCTURE } from '../catalogData';
@@ -37,10 +37,10 @@ export const SiteHeader: React.FC<SiteHeaderProps> = ({ activePage }) => {
       <div className="container mx-auto px-6 py-4 flex justify-between items-center relative">
         <a href="/" className="flex flex-col group z-50">
           <span className="font-serif text-2xl md:text-3xl font-bold text-emerald-950 tracking-tight group-hover:opacity-80 transition-opacity">
-            G�RKAYA
+            GÜRKAYA
           </span>
           <span className="text-[10px] font-medium text-amber-700 tracking-normal uppercase -mt-1 ml-1 whitespace-nowrap">
-            0STANBUL'UN EN UYGUN MERMER F0RMASI
+            İSTANBUL'UN EN UYGUN MERMER FİRMASI
           </span>
         </a>
 
@@ -51,7 +51,7 @@ export const SiteHeader: React.FC<SiteHeaderProps> = ({ activePage }) => {
 
           <div className="group relative h-full py-4 -my-4">
             <button className={`flex items-center gap-1 transition-colors h-full ${activePage === 'catalog' ? 'text-emerald-900 font-bold' : 'hover:text-emerald-900'}`}>
-              �r�n Katalou <ChevronDown size={14} />
+              Ürün Kataloğu <ChevronDown size={14} />
             </button>
 
             <div className="hidden group-hover:block absolute top-full left-0 w-48 bg-white border border-stone-100 shadow-xl rounded-sm py-2 animate-fade-in">
@@ -87,7 +87,7 @@ export const SiteHeader: React.FC<SiteHeaderProps> = ({ activePage }) => {
           </a>
 
           <a href="/iletisim" className={`transition-colors ${activePage === 'contact' ? 'text-emerald-900 font-bold' : 'hover:text-emerald-900'}`}>
-            0leti_im
+            İletişim
           </a>
 
           <a
@@ -115,7 +115,7 @@ export const SiteHeader: React.FC<SiteHeaderProps> = ({ activePage }) => {
             </a>
 
             <div className="border-b border-stone-100 pb-3">
-              <div className="font-bold text-emerald-900 mb-2">�r�n Katalou</div>
+              <div className="font-bold text-emerald-900 mb-2">Ürün Kataloğu</div>
               <div className="pl-4 border-l-2 border-stone-100 flex flex-col gap-3">
                 {CATALOG_MENU_STRUCTURE.map((cat) => (
                   <div key={cat.key}>
@@ -148,7 +148,7 @@ export const SiteHeader: React.FC<SiteHeaderProps> = ({ activePage }) => {
               Blog
             </a>
             <a href="/iletisim" className="border-b border-stone-100 pb-3">
-              0leti_im
+              İletişim
             </a>
             <a href={`tel:${CONTACT_INFO.phone}`} className="mt-4 flex items-center justify-center gap-2 bg-emerald-950 text-white py-4 rounded-lg">
               <Phone size={20} />
