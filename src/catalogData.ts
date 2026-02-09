@@ -111,7 +111,7 @@ Object.keys(folderToCategory).forEach((folder) => {
   const brandTitle = BRAND_LABELS[folder] || folder;
   const id = toBrandSlug(brandTitle);
   const products = buildProducts(folder);
-  const coverImage = products[0]?.image || 'https://images.unsplash.com/photo-1567225557594-88d73e55f2cb?q=80&w=1200&auto=format&fit=crop';
+  const coverImage = products[0]?.image || `${r2PublicUrl}/site-images/fallback/catalog-cover.jpg`;
 
   CATALOG_DATA[id] = {
     id,

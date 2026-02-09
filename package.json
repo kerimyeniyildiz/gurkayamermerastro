@@ -9,7 +9,8 @@
                     "preview":  "astro preview",
                     "catalog:manifest":  "node scripts/generateCatalogManifest.mjs",
                     "catalog:upload:r2":  "node scripts/uploadCatalogToR2.mjs",
-                    "hero:upload:r2":  "node scripts/uploadHeroVideoToR2.mjs"
+                    "hero:upload:r2":  "node scripts/uploadHeroVideoToR2.mjs",
+                    "unsplash:migrate:r2":  "node scripts/migrateUnsplashToR2.mjs"
                 },
     "dependencies":  {
                          "@astrojs/react":  "^4.2.0",

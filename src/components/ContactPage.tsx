@@ -101,7 +101,7 @@ export const ContactPage: React.FC = () => {
           <div className="relative h-[400px] bg-stone-200 rounded-lg overflow-hidden shadow-2xl group">
              {/* Static Map Image / Placeholder */}
              <img 
-               src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=1200&auto=format&fit=crop" 
+               src="https://cdn.gurkayamermer.com/site-images/contact/map-cover.jpg" 
                alt="Harita Konumu" 
                className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700"
              />

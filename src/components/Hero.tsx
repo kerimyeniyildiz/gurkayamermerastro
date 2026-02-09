@@ -8,7 +8,7 @@ export const Hero: React.FC = () => {
       {/* Background Image - Bright Luxury Kitchen */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2000&auto=format&fit=crop"
+          src="https://cdn.gurkayamermer.com/site-images/hero/home-hero.jpg"
           alt="Lüks Mutfak Tezgahı"
           className="w-full h-full object-cover opacity-90"
         />

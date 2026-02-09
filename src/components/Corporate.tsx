@@ -14,7 +14,7 @@ export const Corporate: React.FC = () => {
           <div className="w-full lg:w-1/2 relative">
             <div className="relative aspect-[4/5] rounded-sm overflow-hidden shadow-2xl">
               <img 
-                src="https://images.unsplash.com/photo-1618221639263-9d413346453d?q=80&w=1200&auto=format&fit=crop" 
+                src="https://cdn.gurkayamermer.com/site-images/corporate/corporate-cover.jpg" 
                 alt="Gürkaya Mermer Atölye ve İşçilik" 
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
               />
