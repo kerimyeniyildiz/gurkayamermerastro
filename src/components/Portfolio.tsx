@@ -80,7 +80,7 @@ export const Portfolio: React.FC = () => {
               type="button"
               onClick={() => idx === 0 && setIsVideoOpen(true)}
               className={`group relative overflow-hidden rounded-lg text-left ${idx === 0 ? 'cursor-pointer' : 'cursor-default'} ${
-                idx === 0 ? 'lg:col-span-2 lg:row-span-2 aspect-[4/3]' : 'aspect-square'
+                idx === 0 ? 'lg:col-span-2 lg:row-span-2 aspect-[4/3] lg:aspect-square' : 'aspect-square'
               }`}
             >
               {idx === 0 ? (
