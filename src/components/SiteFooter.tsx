@@ -1,6 +1,4 @@
 ﻿import React from 'react';
-import { CONTACT_INFO } from '../constants';
-
 export const SiteFooter: React.FC = () => {
   return (
     <footer className="bg-emerald-950 text-white/80 py-16 border-t border-emerald-900">
@@ -27,7 +25,9 @@ export const SiteFooter: React.FC = () => {
         </div>
 
         <div className="mt-4 text-center text-xs text-emerald-200/40">
-          <a href={`tel:${CONTACT_INFO.phone}`} className="hover:text-white transition-colors">{CONTACT_INFO.displayPhone}</a>
+          <a href="https://kerimyeniyildiz.com.tr" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+            SEO Uzmanı
+          </a>
         </div>
       </div>
     </footer>

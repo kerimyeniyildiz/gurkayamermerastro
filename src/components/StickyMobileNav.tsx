@@ -1,11 +1,19 @@
-import React from 'react';
-import { Phone, MessageCircle } from 'lucide-react';
+﻿import React from 'react';
+import { Phone, MessageCircle, BookOpen } from 'lucide-react';
 import { CONTACT_INFO } from '../constants';
 
 export const StickyMobileNav: React.FC = () => {
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-stone-100 px-3 py-2 md:hidden shadow-[0_-5px_15px_rgba(0,0,0,0.05)]">
       <div className="flex gap-2">
+        <a
+          href="/katalog/belenco"
+          className="flex-1 bg-stone-100 text-emerald-950 h-10 rounded-full flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-transform"
+        >
+          <BookOpen size={16} />
+          <span className="font-bold text-[13px] leading-none">Katalog</span>
+        </a>
+
         <a
           href={`tel:${CONTACT_INFO.phone}`}
           className="flex-1 bg-emerald-950 text-white h-10 rounded-full flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-transform"

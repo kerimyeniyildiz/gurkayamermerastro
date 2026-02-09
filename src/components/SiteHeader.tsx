@@ -113,6 +113,9 @@ export const SiteHeader: React.FC<SiteHeaderProps> = ({ activePage }) => {
             <a href="/kurumsal" className="border-b border-stone-100 pb-3">
               Kurumsal
             </a>
+            <a href="/katalog/belenco" className="border-b border-stone-100 pb-3">
+              Katalog
+            </a>
 
             <div className="border-b border-stone-100 pb-3">
               <div className="font-bold text-emerald-900 mb-2">Ürün Kataloğu</div>

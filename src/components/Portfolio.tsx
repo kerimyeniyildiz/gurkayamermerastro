@@ -105,10 +105,8 @@ export const Portfolio: React.FC = () => {
                 </div>
               )}
 
-              <div className="absolute inset-0 p-6 flex flex-col justify-end bg-gradient-to-t from-emerald-950/80 via-transparent to-transparent opacity-100 md:opacity-0 group-hover:opacity-100 transition-all duration-500">
+              <div className="absolute inset-0 p-6 flex flex-col justify-end bg-gradient-to-t from-emerald-950/80 via-transparent to-transparent opacity-100">
                 <span className="text-amber-400 text-xs font-bold uppercase tracking-wider mb-1">{project.location}</span>
-                <h3 className="font-serif text-2xl text-white mb-1">{project.title}</h3>
-                <p className="text-stone-300 text-sm">{project.desc}</p>
               </div>
             </button>
           ))}
