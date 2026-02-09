@@ -1,0 +1,8 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { BlogClient } from '../components/BlogClient';
+---
+
+<MainLayout title="Blog | G�rkaya Mermer" activePage="blog">
+  <BlogClient client:load />
+</MainLayout>

@@ -1,0 +1,18 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { Hero } from '../components/Hero';
+import { Features } from '../components/Features';
+import { ProductShowcase } from '../components/ProductShowcase';
+import { Portfolio } from '../components/Portfolio';
+import { Testimonials } from '../components/Testimonials';
+import { ContactSection } from '../components/ContactSection';
+---
+
+<MainLayout title="G�rkaya Mermer | Mutfak & Banyo Tezgahlar1" activePage="home">
+  <Hero />
+  <Features />
+  <ProductShowcase client:load />
+  <Portfolio />
+  <Testimonials />
+  <ContactSection />
+</MainLayout>

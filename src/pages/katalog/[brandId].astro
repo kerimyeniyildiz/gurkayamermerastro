@@ -1,0 +1,20 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import { CATALOG_DATA } from '../../catalogData';
+import { CatalogDetailPage } from '../../components/CatalogDetailPage';
+
+export function getStaticPaths() {
+  return Object.keys(CATALOG_DATA).map((brandId) => ({
+    params: { brandId },
+  }));
+}
+
+const { brandId } = Astro.params;
+const pageTitle = CATALOG_DATA[brandId || '']?.title
+  ? `${CATALOG_DATA[brandId || ''].title} | G�rkaya Mermer`
+  : 'Katalog | G�rkaya Mermer';
+---
+
+<MainLayout title={pageTitle} activePage="catalog">
+  <CatalogDetailPage brandId={brandId || ''} />
+</MainLayout>

@@ -1,0 +1,39 @@
+---
+import { SiteHeader, type ActivePage } from '../components/SiteHeader';
+import { SiteFooter } from '../components/SiteFooter';
+import { StickyMobileNav } from '../components/StickyMobileNav';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  activePage: ActivePage;
+}
+
+const { title, activePage } = Astro.props;
+---
+
+<html lang="tr" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  </head>
+  <body class="bg-stone-50 text-stone-900 antialiased selection:bg-emerald-200 selection:text-emerald-900 pb-[80px] md:pb-0">
+    <div class="bg-emerald-950 text-white/90 py-3 px-4 text-center text-xs tracking-widest uppercase font-medium">
+      0stanbul 0�i �cretsiz Ke_if & Tasar1m Hizmeti
+    </div>
+
+    <SiteHeader client:load activePage={activePage} />
+
+    <main class="overflow-hidden min-h-[60vh]">
+      <slot />
+    </main>
+
+    <SiteFooter activePage={activePage} />
+    <StickyMobileNav />
+  </body>
+</html>
