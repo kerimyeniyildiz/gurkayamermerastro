@@ -11,11 +11,20 @@ type PayloadPost = {
   publishedAt?: string;
   category?: string;
   coverImage?: string;
+  coverImageMedia?: {
+    url?: string;
+  } | null;
   readingTime?: string;
   content?: { paragraph?: string }[];
 };
 
-const normalizePayloadPost = (post: PayloadPost): BlogPost => {
+const toAbsoluteUrl = (url: string, apiUrl: string): string => {
+  if (!url) return '';
+  if (url.startsWith('http://') || url.startsWith('https://')) return url;
+  return `${apiUrl.replace(/\/+$/, '')}${url.startsWith('/') ? '' : '/'}${url}`;
+};
+
+const normalizePayloadPost = (post: PayloadPost, apiUrl: string): BlogPost => {
   const date = post.publishedAt
     ? new Date(post.publishedAt).toLocaleDateString('tr-TR', {
         day: 'numeric',
@@ -24,13 +33,16 @@ const normalizePayloadPost = (post: PayloadPost): BlogPost => {
       })
     : '';
 
+  const mediaUrl = post.coverImageMedia?.url ? toAbsoluteUrl(post.coverImageMedia.url, apiUrl) : '';
+  const fallbackUrl = post.coverImage ? toAbsoluteUrl(post.coverImage, apiUrl) : '';
+
   return {
     id: post.slug || post.id || Math.random().toString(36).slice(2),
     title: post.title || '',
     excerpt: post.excerpt || '',
     date,
     category: post.category || 'Genel',
-    image: post.coverImage || '',
+    image: mediaUrl || fallbackUrl,
     content: (post.content || []).map((item) => item.paragraph || '').filter(Boolean),
   };
 };
@@ -49,11 +61,11 @@ export const BlogClient: React.FC = () => {
 
     const fetchPosts = async () => {
       try {
-        const response = await fetch(`${apiUrl}/api/posts?limit=100&sort=-publishedAt&where[status][equals]=published`);
+        const response = await fetch(`${apiUrl}/api/posts?depth=1&limit=100&sort=-publishedAt&where[status][equals]=published`);
         if (!response.ok) throw new Error('Blog verisi alınamadı');
         const json = await response.json();
         const docs = (json?.docs || []) as PayloadPost[];
-        setPosts(docs.map(normalizePayloadPost));
+        setPosts(docs.map((doc) => normalizePayloadPost(doc, apiUrl)));
       } catch (error) {
         console.error(error);
       } finally {
