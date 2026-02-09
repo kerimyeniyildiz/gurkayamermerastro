@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { Phone, Menu, X, ChevronRight, ChevronDown } from 'lucide-react';
 import { CONTACT_INFO } from '../constants';
 import { CATALOG_MENU_STRUCTURE } from '../catalogData';
@@ -32,16 +32,24 @@ export const SiteHeader: React.FC<SiteHeaderProps> = ({ activePage }) => {
     setMobileExpandedCategory(mobileExpandedCategory === key ? null : key);
   };
 
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = '';
+      };
+    }
+
+    document.body.style.overflow = '';
+    return undefined;
+  }, [isMenuOpen]);
+
   return (
-    <header className="bg-white/95 backdrop-blur-lg border-b border-stone-100 sticky top-0 z-50 shadow-sm">
+    <header className="bg-white/95 backdrop-blur-lg border-b border-stone-100 sticky top-0 z-[70] shadow-sm">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center relative">
         <a href="/" className="flex flex-col group z-50">
-          <span className="font-serif text-2xl md:text-3xl font-bold text-emerald-950 tracking-tight group-hover:opacity-80 transition-opacity">
-            GÜRKAYA
-          </span>
-          <span className="text-[10px] font-medium text-amber-700 tracking-normal uppercase -mt-1 ml-1 whitespace-nowrap">
-            İSTANBUL'UN EN UYGUN MERMER FİRMASI
-          </span>
+          <span className="font-serif text-2xl md:text-3xl font-bold text-emerald-950 tracking-tight group-hover:opacity-80 transition-opacity">GÜRKAYA</span>
+          <span className="text-[10px] font-medium text-amber-700 tracking-normal uppercase -mt-1 ml-1 whitespace-nowrap">İSTANBUL'UN EN UYGUN MERMER FİRMASI</span>
         </a>
 
         <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-medium text-stone-600">
@@ -105,8 +113,8 @@ export const SiteHeader: React.FC<SiteHeaderProps> = ({ activePage }) => {
       </div>
 
       {isMenuOpen && (
-        <div className="fixed inset-0 top-[85px] bg-white z-40 flex flex-col p-6 md:hidden animate-fade-in overflow-y-auto pb-24">
-          <nav className="flex flex-col gap-4 text-lg font-serif text-emerald-950">
+        <div className="fixed inset-0 z-[60] bg-white md:hidden animate-fade-in">
+          <nav className="h-full overflow-y-auto pt-[96px] px-6 pb-28 flex flex-col gap-4 text-lg font-serif text-emerald-950">
             <a href="/" className="border-b border-stone-100 pb-3">
               Ana Sayfa
             </a>
