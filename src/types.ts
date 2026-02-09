@@ -1,7 +1,7 @@
-export interface Product {
+﻿export interface Product {
   id: string;
   name: string;
-  brand: 'Porselen' | 'Belenco' | 'Çimstone' | string;
+  brand: 'Granit' | 'Belenco' | 'Çimstone' | string;
   image: string;
   popular?: boolean;
 }
