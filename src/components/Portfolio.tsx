@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+ï»¿import React, { useMemo, useState } from 'react';
 import { Play, ArrowUpRight, X } from 'lucide-react';
 import { CONTACT_INFO } from '../constants';
 
@@ -7,29 +7,29 @@ const PROJECTS = [
     id: 1,
     title: 'Belenco Perla',
     location: 'Kemerburgaz',
-    image: 'https://images.unsplash.com/photo-1556912172-45b7abe8d7e1?q=80&w=1200&auto=format&fit=crop',
-    desc: 'Ada Mutfak Uygulamasý',
+    image: 'https://cdn.gurkayamermer.com/catalog-images/BELENCO/Perla-White.jpg',
+    desc: 'Ada Mutfak UygulamasÄ±',
   },
   {
     id: 2,
     title: 'Porselen Calacatta',
-    location: 'Göktürk',
+    location: 'GÃ¶ktÃ¼rk',
     image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop',
     desc: 'Duvar Paneli & Tezgah',
   },
   {
     id: 3,
-    title: 'Çimstone Arcadia',
-    location: 'Baþakþehir',
+    title: 'Ã‡imstone Arcadia',
+    location: 'BaÅŸakÅŸehir',
     image: 'https://images.unsplash.com/photo-1565538810643-b5bdb714032a?q=80&w=800&auto=format&fit=crop',
     desc: 'L Tipi Mutfak',
   },
   {
     id: 4,
     title: 'Picasso Black',
-    location: 'Zekeriyaköy',
+    location: 'ZekeriyakÃ¶y',
     image: 'https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=800&auto=format&fit=crop',
-    desc: 'Mat Siyah Tasarým',
+    desc: 'Mat Siyah TasarÄ±m',
   },
 ];
 
@@ -49,14 +49,14 @@ export const Portfolio: React.FC = () => {
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div>
-            <span className="text-amber-700 font-bold tracking-[0.2em] uppercase text-xs mb-3 block">Seçkin Projeler</span>
-            <h2 className="font-serif text-4xl md:text-5xl text-emerald-950">Referanslarýmýz</h2>
+            <span className="text-amber-700 font-bold tracking-[0.2em] uppercase text-xs mb-3 block">SeÃ§kin Projeler</span>
+            <h2 className="font-serif text-4xl md:text-5xl text-emerald-950">ReferanslarÄ±mÄ±z</h2>
           </div>
           <a
-            href={`https://wa.me/${CONTACT_INFO.whatsapp}?text=Referans görsellerinizi inceledim, daha fazla örnek görebilir miyim?`}
+            href={`https://wa.me/${CONTACT_INFO.whatsapp}?text=Referans gÃ¶rsellerinizi inceledim, daha fazla Ã¶rnek gÃ¶rebilir miyim?`}
             className="group hidden md:flex items-center gap-2 text-stone-600 hover:text-emerald-900 transition-colors border-b border-stone-300 pb-1"
           >
-            Tüm Projeleri Ýncele <ArrowUpRight size={18} className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
+            TÃ¼m Projeleri Ä°ncele <ArrowUpRight size={18} className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
           </a>
         </div>
 
@@ -89,7 +89,7 @@ export const Portfolio: React.FC = () => {
 
         <div className="mt-8 md:hidden">
           <a href={`https://wa.me/${CONTACT_INFO.whatsapp}`} className="flex w-full items-center justify-center gap-2 py-4 border border-stone-300 rounded-lg text-stone-600 font-medium hover:bg-stone-100">
-            Daha Fazla Proje Gör
+            Daha Fazla Proje GÃ¶r
           </a>
         </div>
       </div>
@@ -109,7 +109,7 @@ export const Portfolio: React.FC = () => {
             <div className="relative aspect-video rounded-lg overflow-hidden shadow-2xl bg-black">
               <video className="w-full h-full" controls autoPlay playsInline preload="metadata" poster={PROJECTS[0].image}>
                 <source src={videoUrl} type="video/mp4" />
-                Tarayýcýnýz video etiketini desteklemiyor.
+                TarayÄ±cÄ±nÄ±z video etiketini desteklemiyor.
               </video>
             </div>
           </div>
@@ -118,4 +118,3 @@ export const Portfolio: React.FC = () => {
     </section>
   );
 };
-
