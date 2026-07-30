@@ -1,0 +1,25 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "gurkayamermer",
+  "compatibility_date": "2026-05-01",
+
+  // Site tamamen statik: Astro `dist/` altına saf HTML/CSS/JS üretiyor.
+  // Sunucu tarafı kod olmadığı için Worker betiği (`main`) yok — yalnızca
+  // statik varlıklar servis ediliyor. Bu şekilde istek ücreti de oluşmuyor.
+  //
+  // html_handling "auto-trailing-slash": /kurumsal isteği /kurumsal/ adresine
+  // yönlendirilir. Bu, MainLayout'un ürettiği kanonik adreslerle uyumludur.
+  // (Eski nginx aynı yönlendirmeyi yapıyordu ama HTTPS'i HTTP'ye düşürüyordu.)
+  //
+  // Sitede özel bir 404 sayfası yok; bulunamayan adresler düz 404 döner
+  // (eski nginx davranışıyla aynı).
+  "assets": {
+    "directory": "./dist",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "none"
+  },
+
+  "observability": {
+    "enabled": true
+  }
+}

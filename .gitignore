@@ -3,3 +3,6 @@
 .astro
 dist
 .env
+
+# Cloudflare
+.wrangler

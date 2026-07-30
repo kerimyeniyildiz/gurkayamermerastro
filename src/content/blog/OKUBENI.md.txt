@@ -1,0 +1,41 @@
+Blog yazısı nasıl eklenir?
+=========================
+
+Bu klasöre `.md` uzantılı bir dosya ekleyin. Dosya adı, yazının adresi olur:
+
+    src/content/blog/mermer-tezgah-bakimi.md
+      -> https://gurkayamermer.com/blog/mermer-tezgah-bakimi/
+
+Dosyanın başında üç tire arasında şu bilgiler bulunmalı:
+
+    ---
+    title: "Mermer Tezgah Bakımı: 7 Pratik Öneri"
+    excerpt: "Mutfak tezgahınızın ilk günkü görünümünü korumanın yolları."
+    image: "https://cdn.gurkayamermer.com/site-images/blog/tezgah-bakimi.jpg"
+    category: "Bakım"
+    publishedAt: 2026-08-01
+    ---
+
+    Buradan itibaren yazının kendisi yazılır. Normal markdown geçerlidir:
+
+    ## Ara başlık
+
+    Paragraf metni. **Kalın** ve *italik* yazabilirsiniz.
+
+    - Madde bir
+    - Madde iki
+
+Zorunlu alanlar: title, excerpt, image, publishedAt
+İsteğe bağlı: category (varsayılan "Genel"), readingTime, draft
+
+Yazıyı yayına almadan hazırlamak isterseniz başlığa `draft: true` ekleyin;
+o yazı sitede ve site haritasında görünmez.
+
+Kapak görselini `cdn.gurkayamermer.com` üzerine yükleyip tam adresini yazın.
+
+Dosyayı ekledikten sonra siteyi yeniden yayına almak gerekir:
+
+    npm run build
+    npx wrangler deploy
+
+Not: Bu dosyanın uzantısı bilerek `.md.txt` — böylece blog yazısı sayılmaz.
